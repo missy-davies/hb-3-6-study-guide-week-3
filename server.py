@@ -36,7 +36,22 @@ def save_session():
 def show_results():
     """Show results"""
 
-    return render_template('results.html')
+    cheery = request.args.get('cheery')
+    honest = request.args.get('honesty')
+    dreary = request.args.get('dreary')
+
+    if cheery and honest and dreary:
+        message = """Well some days are better than others, but today looks like
+                   it's kind of in the middle."""
+    elif cheery and honest:
+        message = "It's a fantastic day! Be grateful for all that you have"
+    elif honest and dreary:
+        message = "Today is normal, hopefully it won't suck"
+    else:
+        message = "Have a nice day!"
+
+
+    return render_template('results.html', message=message)
 
 
 if __name__ == "__main__":
