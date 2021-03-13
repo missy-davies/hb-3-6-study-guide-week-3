@@ -29,7 +29,7 @@ def save_session():
 
     name = request.form.get("name")
     session["name"] = name
-    return render_template('homepage.html')
+    return render_template('form.html')
 
 
 @app.route('/results')
@@ -40,12 +40,12 @@ def show_results():
     honest = request.args.get('honesty')
     dreary = request.args.get('dreary')
 
-    if cheery and honest and dreary:
+    if honest:
         message = """Well some days are better than others, but today looks like
                    it's kind of in the middle."""
-    elif cheery and honest:
+    elif cheery:
         message = "It's a fantastic day! Be grateful for all that you have"
-    elif honest and dreary:
+    elif dreary:
         message = "Today is normal, hopefully it won't suck"
     else:
         message = "Have a nice day!"
